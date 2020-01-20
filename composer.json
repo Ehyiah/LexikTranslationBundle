@@ -1,9 +1,9 @@
 {
-    "name": "lexik/translation-bundle",
+    "name": "matthieu/translation-bundle",
     "type": "symfony-bundle",
     "description": "This bundle allows to import translation files content into the database and provide a GUI to edit translations.",
-    "keywords": ["Symfony2", "bundle", "translation", "i18n"],
-    "homepage": "https://github.com/lexik/LexikTranslationBundle",
+    "keywords": ["Symfony5", "symfony4", "bundle", "translation", "i18n"],
+    "homepage": "https://github.com/Ehyiah/LexikTranslationBundle",
     "license": "MIT",
     "prefer-stable": true,
     "authors": [
@@ -43,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.x.x-dev"
+            "dev-master": "*"
         }
     },
     "minimum-stability": "alpha"
