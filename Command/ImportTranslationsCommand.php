@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\DataCollectorTranslator;
 
 /**
  * Imports translation files content in the database.
@@ -19,17 +19,17 @@ use Symfony\Component\Translation\TranslatorInterface;
  * @author Cédric Girard <c.girard@lexik.fr>
  * @author Nikola Petkanski <nikola@petkanski.com>
  */
-class ImportTranslationsCommand extends ContainerAwareCommand
+class ImportTranslationsCommand extends Command
 {
     /**
-     * @var TranslatorInterface
+     * @var DataCollectorTranslator
      */
     private $translator;
 
     /**
-     * @param TranslatorInterface $translator
+     * @param DataCollectorTranslator $translator
      */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(DataCollectorTranslator $translator)
     {
         parent::__construct();
 

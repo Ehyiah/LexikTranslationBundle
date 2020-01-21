@@ -14,7 +14,7 @@ use Symfony\Component\Filesystem\Filesystem;
  *
  * @author Cédric Girard <c.girard@lexik.fr>
  */
-class ExportTranslationsCommand extends ContainerAwareCommand
+class ExportTranslationsCommand extends Command
 {
     /**
      * @var \Symfony\Component\Console\Input\InputInterface
