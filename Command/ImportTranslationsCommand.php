@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
@@ -22,17 +23,20 @@ use Symfony\Component\Translation\DataCollectorTranslator;
 class ImportTranslationsCommand extends Command
 {
     /**
+     * @var Container
+     */
+    private $container;
+
+    /**
      * @var DataCollectorTranslator
      */
     private $translator;
 
-    /**
-     * @param DataCollectorTranslator $translator
-     */
-    public function __construct(DataCollectorTranslator $translator)
+    public function __construct(DataCollectorTranslator $translator, Container $container)
     {
         parent::__construct();
 
+        $this->container = $container;
         $this->translator = $translator;
     }
 
@@ -79,7 +83,7 @@ class ImportTranslationsCommand extends Command
 
         $locales = $this->input->getOption('locales');
         if (empty($locales)) {
-            $locales = $this->getContainer()->get('lexik_translation.locale.manager')->getLocales();
+            $locales = $this->container->get('lexik_translation.locale.manager')->getLocales();
         }
 
         $domains = $input->getOption('domains') ? explode(',', $input->getOption('domains')) : array();
@@ -258,7 +262,7 @@ class ImportTranslationsCommand extends Command
             return;
         }
 
-        $importer = $this->getContainer()->get('lexik_translation.importer.file');
+        $importer = $this->container->get('lexik_translation.importer.file');
         $importer->setCaseInsensitiveInsert($this->input->getOption('case-insensitive'));
 
         foreach ($finder as $file) {
@@ -314,7 +318,7 @@ class ImportTranslationsCommand extends Command
      */
     protected function getFileNamePattern(array $locales, array $domains)
     {
-        $formats = $this->getContainer()->get('lexik_translation.translator')->getFormats();
+        $formats = $this->container->get('lexik_translation.translator')->getFormats();
 
         if (count($domains)) {
             $regex = sprintf('/((%s)\.(%s)\.(%s))/', implode('|', $domains), implode('|', $locales), implode('|', $formats));
