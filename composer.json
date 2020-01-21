@@ -1,5 +1,5 @@
 {
-    "name": "matthieu/translation-bundle",
+    "name": "lexik/translation-bundle",
     "type": "symfony-bundle",
     "description": "This bundle allows to import translation files content into the database and provide a GUI to edit translations.",
     "keywords": ["Symfony5", "symfony4", "bundle", "translation", "i18n"],
