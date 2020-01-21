@@ -141,12 +141,7 @@ class LexikTranslationExtension extends Extension implements PrependExtensionInt
 
         $rootDir = 'vendor/lexik/translation-bundle/Resources/views';
 
-        // Only symfony versions >= 3.3 include the kernel.project_dir parameter
-        if (Kernel::VERSION_ID >= 30300) {
-            $rootDir = '%kernel.project_dir%/'.$rootDir;
-        } else {
-            $rootDir = '%kernel.root_dir%/../'.$rootDir;
-        }
+        $rootDir = '%kernel.project_dir%/'.$rootDir;
 
         $container->prependExtensionConfig('twig', [
             'paths' => [
